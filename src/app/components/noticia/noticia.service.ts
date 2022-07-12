@@ -35,14 +35,15 @@ export class NoticiaService {
     return this.http.get<Noticia[]>(this.baseUrl);
   }
   deletar(id: string): Observable<Noticia>{
-    const url = `${this.baseUrl}?id=${id}`;
+    const url = `${this.baseUrl}/${id}`;
     return this.http.delete<Noticia>(url);
   }
   lerPorId(id: string):Observable<Noticia>{
-    const url = `${this.baseUrl}/pesquisa?id=${id}`;
+    const url = `${this.baseUrl}/${id}`;
     return this.http.get<Noticia>(url);
   }
   alterar(noticia: Noticia):Observable<Noticia>{
+    console.log('noticia: ', noticia);
     return this.http.put<Noticia>(this.baseUrl, noticia);
   }
 }

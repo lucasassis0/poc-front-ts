@@ -1,0 +1,14 @@
+{
+  "noticias": [
+    {
+      "title": "teste",
+      "description": "testando",
+      "id": 1
+    },
+    {
+      "title": "SUP",
+      "description": "Coéee",
+      "id": 3
+    }
+  ]
+}

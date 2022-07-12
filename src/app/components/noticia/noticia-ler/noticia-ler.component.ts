@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { DeleteModalComponent } from 'src/app/shared/modal/delete-modal/delete-modal.component';
 import { Noticia } from '../noticia.model';
 import { NoticiaService } from '../noticia.service';
 
@@ -9,16 +11,37 @@ import { NoticiaService } from '../noticia.service';
 })
 export class NoticiaLerComponent implements OnInit {
 
-  noticias!: Noticia[];
-  displayedColumns = ['title', 'description','action']
+  noticias: Noticia[] = [];
 
-  constructor(private noticiaService: NoticiaService) { }
+  constructor(
+    private noticiaService: NoticiaService,
+    private dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.noticiaService.ler().subscribe(noticias => {
       this.noticias = noticias;
-      console.log(noticias);
     })
+    console.log('noticias: ', this.noticias);
+  }
+
+  openDialog(id: string) {
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(DeleteModalComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+      data => data ? this.handleDelete(id) : '');
+  }
+
+  handleDelete(id: string) {
+    this.noticiaService.deletar(id).subscribe(() => {
+      this.noticiaService.showMessage("Noticia deletada com sucesso!");
+      window.location.reload();
+    });
   }
 
 }

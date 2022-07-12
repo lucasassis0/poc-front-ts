@@ -11,7 +11,7 @@ import { NoticiaService } from '../noticia.service';
 export class NoticiaAlterarComponent implements OnInit {
 
   noticia:Noticia = {
-    _id: '',
+    id: '',
     title: '',
     description: ''
   }
@@ -19,9 +19,9 @@ export class NoticiaAlterarComponent implements OnInit {
   constructor(private router:Router, private noticiaService: NoticiaService, private route:ActivatedRoute) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('_id') || '';
+    const id = this.route.snapshot.paramMap.get('id') || '';
     this.noticiaService.lerPorId(id).subscribe(noticia =>{
-      this.noticia.id = noticia._id;
+      this.noticia.id = noticia.id;
       this.noticia.title = noticia.title;
       this.noticia.description = noticia.description;
     })

@@ -25,8 +25,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HttpClientModule } from '@angular/common/http';
 import { NoticiaLerComponent } from './components/noticia/noticia-ler/noticia-ler.component';
-import { NoticiaDeletarComponent } from './components/noticia/noticia-deletar/noticia-deletar.component';
 import { NoticiaAlterarComponent } from './components/noticia/noticia-alterar/noticia-alterar.component';
+import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
   declarations: [
@@ -38,7 +38,6 @@ import { NoticiaAlterarComponent } from './components/noticia/noticia-alterar/no
     NoticiasCrudComponent,
     NoticiaCriarComponent,
     NoticiaLerComponent,
-    NoticiaDeletarComponent,
     NoticiaAlterarComponent
   ],
   imports: [
@@ -57,7 +56,8 @@ import { NoticiaAlterarComponent } from './components/noticia/noticia-alterar/no
     MatInputModule,
     MatTableModule,
     MatPaginatorModule,
-    MatSortModule
+    MatSortModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
